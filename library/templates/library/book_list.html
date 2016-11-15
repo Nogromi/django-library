@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for book in books %}
+    <div>
+    <h1><a href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h1>
+    <p>quantity: {{ book.quantity }}</p>
+    <p>description: {{ book.description }}</p>
+    <p>book author: {{ book.book_author }}</p>
+    <p>{{ book.text|linebreaksbr }}</p>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

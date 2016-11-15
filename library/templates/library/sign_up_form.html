@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up Form</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+</head>
+<link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+
+<body>
+<div class="login">
+
+    <form method="post" action="http://127.0.0.1:8000/create_account">
+                {% csrf_token %}
+        <input type="text" name="u" placeholder="Username" required="required"/>
+        <input type="password" name="p" placeholder="Password" required="required"/>
+        <input type="text" name="first_name" placeholder="First name" required="required"/>
+        <input type="text" name="last_name" placeholder="Last name" required="required"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Create Account</button>
+    </form>
+</div>
+
+
+</body>
+</html>
