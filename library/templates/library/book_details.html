@@ -5,13 +5,21 @@
     <title>Title</title>
 </head>
 <body>
- <h1>{{ book.title }}</h1>
- <h1>{{ book.description }}</h1>
- <h1>{{ book.book_author }}</h1>
- <h1>quantity  {{ book.quantity }}</h1>
-     <h1><a href="{% url 'order book' pk=book.pk %}"> Order</a></h1>
+<h1>{{ book.title }}</h1>
+<h1>{{ book.description }}</h1>
+<h1>{{ book.book_author }}</h1>
+<h1>quantity {{ book.quantity }}</h1>
+<form method="post" action="order_book">
+    <select name="option">
+        <option  value="reading_room">in reeading room</option>
+        <option  value="on_ticket">on ticket</option>
+    </select>
+    <input type="submit"  class="btn btn-primary btn-block btn-large" value=Order />
+
+</form>
+{#<h1><a href="{% url 'order book' pk=book.pk %}"> Order</a></h1>#}
 
 
-        <p>{{ book.text|linebreaksbr }}</p>
+<p>{{ book.text|linebreaksbr }}</p>
 </body>
 </html>
