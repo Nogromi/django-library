@@ -1,17 +1,24 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 </head>
 <body>
+        <a href="http://127.0.0.1:8000/profile"class="btn btn-primary btn-block" >Profile</a>
+
 {% for book in books %}
     <div>
-    <h1><a href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h1>
-    <p>quantity: {{ book.quantity }}</p>
+    <h1><a href="{% url 'book details' pk=book.pk %}"  class="head" >{{ book.title }}</a></h1>
+    <div class="properties">
+    <p>quantity: {{ book }}</p>
     <p>description: {{ book.description }}</p>
     <p>book author: {{ book.book_author }}</p>
     <p>{{ book.text|linebreaksbr }}</p>
+    </div>
 {% endfor %}
 
 </div>

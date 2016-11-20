@@ -3,16 +3,16 @@ from django.contrib.auth.models import User
 from  django.contrib.auth import *
 from .models import Book
 from django.shortcuts import render, get_object_or_404
-from  rest_framework import  generics
+from  rest_framework import generics
 from .serializers import BookSerializer
-
+from .models import Formular
 
 
 def login_form(request):
     return render(request, 'library/login_form.html', {})
 
 
-def check(request):
+def home(request):
     username = request.POST['u']
     password = request.POST['p']
     user = authenticate(username=username, password=password)
@@ -20,10 +20,14 @@ def check(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            books = Book.objects.all()
-            return render(request, 'library/home.html', )
+            books = Book.objects.order_by('title')
+            return render(request, 'library/home.html', {'books': books} )
     else:
         return render(request, 'library/fuck.html')
+
+def logged_home(request):
+    books = Book.objects.order_by('title')
+    return render(request, 'library/home.html', {'books': books})
 
 
 def sign_up_form(request):
@@ -51,25 +55,47 @@ def search_book(request):
 
 def book_details(request, pk):
     book = get_object_or_404(Book, pk=pk)
+
     return render(request, 'library/book_details.html', {'book': book})
+
+
 
 
 def order_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
+    user = request.user
     if book.quantity > 0:
-        # get_book= Book.objects.update(quantity=book.quantity-1)
-        get_book= Book.objects.filter(title=book)[0]
-        get_book.quantity-=1
-        get_book.save()
+        get_book = Book.objects.filter(title=book)[0]
 
-        return render(request, 'library/order_book.html', {'book': book})
-    return render(request, 'library/fuck.html', {'book': book})
+        if not Formular.objects.filter(user=user, book= get_book):
+            # get_book= Book.objects.update(quantity=book.quantity-1)
+            get_book.quantity -= 1
+            get_book.save()
+            option = request.POST['option']
+
+            f = Formular(book=book, user=user, user_option=option)
+            f.save()
+
+            return render(request, 'library/order_book.html', {'book': book})
+    return render(request, 'library/fuck.html')
+
+
+def profile(request):
+
+    # картка, що заповнюється на кожного читача бібліотеки, куди записуються відомості про видані йому книжки
+    book_reader=Formular.objects.filter(user=request.user)
+    return render(request, 'library/profile.html',{'book_reader':book_reader} )
+
+
+def logged_profile(request):
+    books = Book.objects.order_by('title')
+    return render(request, 'library/profile.html', {'books': books})
 
 class BookList(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-

@@ -1,20 +1,24 @@
 <!DOCTYPE html>
+{% load staticfiles %}
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 </head>
-<body>
+<body  class="mytext">
 <h1>{{ book.title }}</h1>
 <h1>{{ book.description }}</h1>
 <h1>{{ book.book_author }}</h1>
 <h1>quantity {{ book.quantity }}</h1>
-<form method="post" action="order_book">
+<form method="post" action="order_book" class="mytext">
     <select name="option">
         <option  value="reading_room">in reeading room</option>
         <option  value="on_ticket">on ticket</option>
     </select>
-    <input type="submit"  class="btn btn-primary btn-block btn-large" value=Order />
+    <input type="submit"  class="btn btn-primary btn-block btn-large btn-order" value=Order />
 
 </form>
 {#<h1><a href="{% url 'order book' pk=book.pk %}"> Order</a></h1>#}

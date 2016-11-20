@@ -4,18 +4,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
 </head>
-<link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 <body>
+    <a href="http://127.0.0.1:8000/profile"class="btn btn-primary btn-block" >Profile</a>
+
 <form method="post" action="http://127.0.0.1:8000/search">
     {% csrf_token %}
-    <div class="login h1">
+
+    <div class="catalog">
+         <h1> Catalog:</h1>
+
+    {% for book in books %}
+
+            <h2> <a  class="mytext" href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h2>
+
+
+    {% endfor %}
+    </div>
+
+
+
+
+    <div class="search">
     <input type="text" name="search_book" placeholder="Search" required="required"/>
     <button type="submit" class="btn btn-primary btn-block btn-large">Search</button>
-    <div/>
-    <form/>
+    </div>
+    </form>
 </body>
 </html>

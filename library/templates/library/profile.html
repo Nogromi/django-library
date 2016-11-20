@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My profile</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+     <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+
+</head>
+<body>
+<h1 class="white-text"> book list:</h1>
+
+{% for book in book_reader %}
+    <ul>
+        {#    <h1><a href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h1>#}
+        <p>
+            <div class="white-text">
+
+        <li> title: {{ book.book }} </li>
+        </div>
+
+        </p>
+    </ul>
+
+{% endfor %}
+<a href="{% url 'logged home' %}" class="btn btn-large btn-primary">Back to menu</a>
+
+</body>
+</html>
