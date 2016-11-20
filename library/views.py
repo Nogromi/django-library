@@ -13,21 +13,21 @@ def login_form(request):
 
 
 def home(request):
-    username = request.POST['u']
-    password = request.POST['p']
-    user = authenticate(username=username, password=password)
+    if request.method=="POST":
+        username = request.POST['u']
+        password = request.POST['p']
+        user = authenticate(username=username, password=password)
 
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            books = Book.objects.order_by('title')
-            return render(request, 'library/home.html', {'books': books} )
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                books = Book.objects.order_by('title')
+                return render(request, 'library/home.html', {'books': books} )
+        else:
+            return render(request, 'library/fuck.html')
     else:
-        return render(request, 'library/fuck.html')
-
-def logged_home(request):
-    books = Book.objects.order_by('title')
-    return render(request, 'library/home.html', {'books': books})
+        books = Book.objects.order_by('title')
+        return render(request, 'library/home.html', {'books': books})
 
 
 def sign_up_form(request):
@@ -44,7 +44,8 @@ def create_account(request):
         return render(request, 'library/sign_up_form.html')
     user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
     user.save()
-    return render(request, 'library/home.html')
+    books = Book.objects.order_by('title')
+    return render(request, 'library/home.html', {'books': books})
 
 
 def search_book(request):
@@ -65,7 +66,7 @@ def order_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     user = request.user
     if book.quantity > 0:
-        get_book = Book.objects.filter(title=book)[0]
+        get_book = Book.objects.filter(title=book)[0] # без [0]  це QuerySet а так це обэкт Книга
 
         if not Formular.objects.filter(user=user, book= get_book):
             # get_book= Book.objects.update(quantity=book.quantity-1)
@@ -87,9 +88,21 @@ def profile(request):
     return render(request, 'library/profile.html',{'book_reader':book_reader} )
 
 
-def logged_profile(request):
-    books = Book.objects.order_by('title')
-    return render(request, 'library/profile.html', {'books': books})
+
+def return_book(request):
+    book = request.POST['book_return']
+    get_book = Book.objects.filter(title=book)[0]
+    get_book.quantity += 1
+    get_book.save()
+
+    user= request.user
+    f= Formular.objects.filter(user=user, book=get_book)
+    f.delete()
+
+    book_reader=Formular.objects.filter(user=request.user)
+
+    return render(request, 'library/profile.html',{'book_reader':book_reader} )
+
 
 class BookList(generics.ListCreateAPIView):
     queryset = Book.objects.all()
