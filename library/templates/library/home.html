@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-
-<html lang="en">
+{% load i18n %}
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+
+
+    <title> {% trans "Home" %}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
 </head>
 <body>
-    <a href="http://127.0.0.1:8000/profile"class="btn btn-primary btn-block" >Profile</a>
+    <a href="{% url 'profile' %}"class="btn btn-primary btn-block" >  {% trans "Profile" %}</a>
 
-<form method="post" action="http://127.0.0.1:8000/search">
+<form method="post" action="http://127.0.0.1:8000/{% trans "en" %}/search">
     {% csrf_token %}
 
     <div class="catalog">
-         <h1> Catalog:</h1>
+         <h1>{% trans "Catalog" %}</h1>
 
     {% for book in books %}
 
@@ -30,8 +32,8 @@
 
 
     <div class="search">
-    <input type="text" name="search_book" placeholder="Search" required="required"/>
-    <button type="submit" class="btn btn-primary btn-block btn-large">Search</button>
+    <input type="text" name="search_book" placeholder="{% trans "Search" %}" required="required"/>
+    <button type="submit" class="btn btn-primary btn-block btn-large"> {% trans "Search" %}</button>
     </div>
     </form>
 </body>

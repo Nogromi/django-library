@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from datetime import datetime, timedelta
 
 
 class Book(models.Model):
@@ -14,10 +15,17 @@ class Book(models.Model):
         return self.title
 
 
+def get_deadline():
+    return datetime.today() + timedelta(days=30)
+
 class Formular(models.Model): #бібліотечна облікова картка, що вкладається в книжку, з відомостями про цю книжку і відмітками про  читача.
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user_option= models.TextField(default='reading_room',max_length=15)
-
+    state = models.NullBooleanField(default=None)
+    # two_weeks=datetime.date(0,0, 14)
+    order_date = models.DateField(default=datetime.today)
+    deadline = models.DateField(default=get_deadline)
+    # return_date= models.DateTimeField(default=datetime.now()+timedelta(days=30))
     def __str__(self):
         return str(self.user) + ' - ' + self.book.title
