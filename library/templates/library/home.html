@@ -2,41 +2,34 @@
 {% load static %}
 {% load i18n %}
 <html>
-<head>
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
 
 
-    <title> {% trans "Home" %}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+        <title> {% trans "Home" %}</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+            <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
-</head>
-<body>
-    <a href="{% url 'profile' %}"class="btn btn-primary btn-block" >  {% trans "Profile" %}</a>
-           <a href="/{% trans "uk" %}/home" class="language white-text">{% trans "Ukrainian" %}</a>
+    </head>
+    <body>
+        <a href="{% url 'profile' %}"class="btn btn-primary btn-block" >  {% trans "Profile" %}</a>
+               <a href="/{% trans "uk" %}/home" class="language white-text">{% trans "Ukrainian" %}</a>
 
-    <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
-<form method="post" action="http://127.0.0.1:8000/{% trans "en" %}/search">
-    {% csrf_token %}
+        <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
+        <form method="post" action="http://127.0.0.1:8000/{% trans "en" %}/search">
+            {% csrf_token %}
 
-    <div class="catalog">
-         <h1>{% trans "Catalog" %}</h1>
+            <div class="catalog">
+                <h1>{% trans "Catalog" %}</h1>
+                {% for book in books %}
+                    <h2> <a  class="mytext" href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h2>
+                {% endfor %}
+            </div>
 
-    {% for book in books %}
-
-            <h2> <a  class="mytext" href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h2>
-
-
-    {% endfor %}
-    </div>
-
-
-
-
-    <div class="search">
-    <input type="text" name="search_book" placeholder="{% trans "Search" %}" required="required"/>
-    <button type="submit" class="btn btn-primary btn-block btn-large"> {% trans "Search" %}</button>
-    </div>
-    </form>
-</body>
+            <div class="search">
+                <input type="text" name="search_book" placeholder="{% trans "Search" %}" required="required"/>
+                <button type="submit" class="btn btn-primary btn-block btn-large"> {% trans "Search" %}</button>
+            </div>
+        </form>
+    </body>
 </html>

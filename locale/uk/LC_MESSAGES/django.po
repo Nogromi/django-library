@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-24 03:54+0200\n"
+"POT-Creation-Date: 2016-11-24 04:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,10 +31,10 @@ msgid "Profile"
 msgstr "Профіль"
 
 #: .\library\templates\library\book_details.html:14
-#: .\library\templates\library\book_list.html:14
+#: .\library\templates\library\book_list.html:15
 #: .\library\templates\library\home.html:18
 #: .\library\templates\library\order_book.html:15
-#: .\library\templates\library\profile.html:17
+#: .\library\templates\library\profile.html:16
 msgid "Logout"
 msgstr "Вийти"
 
@@ -50,31 +50,38 @@ msgstr "з собою"
 msgid "Resuls"
 msgstr "Результат"
 
-#: .\library\templates\library\book_list.html:19
-msgid "quantity"
-msgstr "доступно"
-
-#: .\library\templates\library\book_list.html:20
-msgid "description"
-msgstr "про книгу"
-
-#: .\library\templates\library\book_list.html:21
-msgid "book author"
-msgstr "автор"
-
+#: .\library\templates\library\book_list.html:14
 #: .\library\templates\library\home.html:9
 msgid "Home"
 msgstr "Головна"
 
+#: .\library\templates\library\book_list.html:20
+msgid "quantity"
+msgstr "доступно"
+
+#: .\library\templates\library\book_list.html:21
+msgid "description"
+msgstr "про книгу"
+
+#: .\library\templates\library\book_list.html:22
+msgid "book author"
+msgstr "автор"
+
+#: .\library\templates\library\error_message.html:12
+msgid "Error"
+msgstr "Щось не так"
+
 #: .\library\templates\library\home.html:16
 #: .\library\templates\library\login_form.html:16
-#: .\library\templates\library\profile.html:16
+#: .\library\templates\library\profile.html:15
+#: .\library\templates\library\sign_up_form.html:15
 msgid "uk"
 msgstr "en"
 
 #: .\library\templates\library\home.html:16
 #: .\library\templates\library\login_form.html:16
-#: .\library\templates\library\profile.html:16
+#: .\library\templates\library\profile.html:15
+#: .\library\templates\library\sign_up_form.html:15
 msgid "Ukrainian"
 msgstr "English"
 
@@ -96,12 +103,12 @@ msgid "Login"
 msgstr "Логін"
 
 #: .\library\templates\library\login_form.html:24
-#: .\library\templates\library\sign_up_form.html:19
+#: .\library\templates\library\sign_up_form.html:21
 msgid "Username"
 msgstr "Логін"
 
 #: .\library\templates\library\login_form.html:25
-#: .\library\templates\library\sign_up_form.html:20
+#: .\library\templates\library\sign_up_form.html:22
 msgid "Password"
 msgstr "Пароль"
 
@@ -127,40 +134,40 @@ msgstr "Профіль"
 msgid "Back to menu"
 msgstr "Повернутися в меню"
 
-#: .\library\templates\library\profile.html:20
+#: .\library\templates\library\profile.html:19
 msgid "Welcome"
 msgstr "Ласкаво просимо"
 
-#: .\library\templates\library\profile.html:20
+#: .\library\templates\library\profile.html:19
 msgid "Thanks for logging in"
 msgstr " "
 
-#: .\library\templates\library\profile.html:24
+#: .\library\templates\library\profile.html:23
 msgid "order list"
 msgstr "Список замовлень"
 
-#: .\library\templates\library\profile.html:33
+#: .\library\templates\library\profile.html:32
 msgid "title"
 msgstr "назва"
 
-#: .\library\templates\library\profile.html:39
+#: .\library\templates\library\profile.html:38
 msgid "processing"
 msgstr "триває обробка"
 
-#: .\library\templates\library\profile.html:40
-#: .\library\templates\library\profile.html:44
+#: .\library\templates\library\profile.html:39
+#: .\library\templates\library\profile.html:43
 msgid "Clear"
 msgstr "Очистити"
 
-#: .\library\templates\library\profile.html:43
+#: .\library\templates\library\profile.html:42
 msgid "refused"
 msgstr "відмовлено"
 
-#: .\library\templates\library\profile.html:47
+#: .\library\templates\library\profile.html:46
 msgid "confirmed"
 msgstr "підтверджено"
 
-#: .\library\templates\library\profile.html:48
+#: .\library\templates\library\profile.html:47
 msgid "Return book"
 msgstr "Повернути книгу"
 
@@ -170,15 +177,15 @@ msgstr "Повернути книгу"
 msgid "Sign up Form"
 msgstr "Реєстрація"
 
-#: .\library\templates\library\sign_up_form.html:21
+#: .\library\templates\library\sign_up_form.html:23
 msgid "First name"
 msgstr "Ваше ім'я"
 
-#: .\library\templates\library\sign_up_form.html:22
+#: .\library\templates\library\sign_up_form.html:24
 msgid "Last name"
 msgstr "Ваше прізвище"
 
-#: .\library\templates\library\sign_up_form.html:23
+#: .\library\templates\library\sign_up_form.html:25
 msgid "Create account"
 msgstr "Створити акаунт"
 

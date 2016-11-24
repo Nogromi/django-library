@@ -3,61 +3,59 @@
 {% load i18n %}
 
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% trans "My profile" %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% trans "My profile" %}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+    </head>
+    <body>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-block">{% trans "Back to menu" %}</a>
+        <a href="/{% trans "uk" %}/home" class="language white-text">{% trans "Ukrainian" %}</a>
+        <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
 
-</head>
-<body>
-            <a href="{% url 'home' %}" class="btn btn-primary btn-block" >{% trans "Back to menu" %}</a>
-            <a href="/{% trans "uk" %}/home" class="language white-text">{% trans "Ukrainian" %}</a>
-            <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
-
-{% if user.is_authenticated %}
-    <h1 class="white-text">{% trans "Welcome" %}, {{ user.get_username }}. {% trans "Thanks for logging in" %}</h1>
-{% endif %}
+        {% if user.is_authenticated %}
+            <h1 class="white-text">{% trans "Welcome" %}, {{ user.get_username }}. {% trans "Thanks for logging in" %}</h1>
+        {% endif %}
 
 
-<h2 class="white-text">{% trans "order list" %}:</h2>
+        <h2 class="white-text">{% trans "order list" %}:</h2>
 
-{% for book in book_reader %}
-    <ul>
-        {#    <h1><a href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h1>#}
-        <p>
-        <form method="post" action="return_book">
+        {% for book in book_reader %}
+          <ul>
+            {#    <h1><a href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h1>#}
+              <p>
+                <form method="post" action="return_book">
 
-            <div class="white-text">
-                <li> {% trans "title" %}: {{ book.book }} </li>
+                    <div class="white-text">
+                        <li> {% trans "title" %}: {{ book.book }} </li>
 
-                {{ book.order_date }} --
-                {{ book.deadline }}
-                {% if  book.state == None %}
-{#                    {{ book.state }}#}
-                    <p>{% trans "processing" %}
-                          <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
-                    </p>
-                {% elif  not book.state %}
-                    <p> {% trans "refused" %}
-                    <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
-                    </p>
-                 {% elif   book.state %}
-                    <p> {% trans "confirmed" %}
-                     <button type="submit" class="btn btn-primary">{% trans "Return book" %}</button>
-                    </p>
-                {% endif %}
+                        {{ book.order_date }} --
+                        {{ book.deadline }}
+                        {% if  book.state == None %}
+                            {#                    {{ book.state }}#}
+                            <p>{% trans "processing" %}
+                                <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
+                            </p>
+                        {% elif  not book.state %}
+                            <p> {% trans "refused" %}
+                                <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
+                            </p>
+                        {% elif   book.state %}
+                            <p> {% trans "confirmed" %}
+                                <button type="submit" class="btn btn-primary">{% trans "Return book" %}</button>
+                            </p>
+                        {% endif %}
 
-            </div>
-            {% csrf_token %}
-            <input type="hidden" name="book_return" value={{ book.book }} />
+                    </div>
+                    {% csrf_token %}
+                    <input type="hidden" name="book_return" value={{ book.book }}/>
 
-        </form>
-        </p>
+                 </form>
+            </p>
+          </ul>
 
-    </ul>
+        {% endfor %}
 
-{% endfor %}
-
-</body>
+    </body>
 </html>

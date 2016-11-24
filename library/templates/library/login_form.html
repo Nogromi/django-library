@@ -2,40 +2,32 @@
 {% load staticfiles %}
 {% load i18n %}
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Login Form</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login Form</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-</head>
-<link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+    </head>
+    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
-<body>
-
-       <a href="/{% trans "uk" %}/index" class="language white-text">{% trans "Ukrainian" %}</a>
-
-
-
-<div class="login">
-    <h1>{% trans "Login" %}</h1>
-    <form method="post" action="home">
-        {% csrf_token %}
-        <input type="text" name="u" placeholder="{% trans "Username" %}" required="required"/>
-        <input type="password" name="p" placeholder="{% trans "Password" %}" required="required"/>
-        <button type="submit" class="btn btn-primary btn-block btn-large">{% trans "Let me in." %}</button>
-    </form>
+    <body>
+        <a href="/{% trans "uk" %}/index" class="language white-text">{% trans "Ukrainian" %}</a>
+        <div class="login">
+          <h1>{% trans "Login" %}</h1>
+             <form method="post" action="home">
+                {% csrf_token %}
+                <input type="text" name="u" placeholder="{% trans "Username" %}" required="required"/>
+                <input type="password" name="p" placeholder="{% trans "Password" %}" required="required"/>
+                <button type="submit" class="btn btn-primary btn-block btn-large">{% trans "Let me in." %}</button>
+             </form>
 
 
-    <h1>{% trans "or Sign up" %}</h1>
-    {#            <button type="submit" class="btn btn-primary btn-block btn-large">Create an account</button>#}
-    <a href="{% url 'sign up form' %}" style="text-decoration: none"
-       class="btn btn-primary btn-block btn-large">{% trans "Create an account" %}
-    </a>
-
-
-</div>
-
-
-</body>
+            <h1>{% trans "or Sign up" %}</h1>
+            {#            <button type="submit" class="btn btn-primary btn-block btn-large">Create an account</button>#}
+            <a href="{% url 'sign up form' %}" style="text-decoration: none"
+             class="btn btn-primary btn-block btn-large">{% trans "Create an account" %}
+            </a>
+        </div>
+    </body>
 </html>

@@ -215,9 +215,7 @@ input:focus {
 
 .language {
     text-decoration: none;
-    position: absolute;
-    top: 92%;
-    left: 48%;
+    margin-bottom: 7px;
 
 }
 .back-to-menu{

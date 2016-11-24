@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{%  load i18n %}
+{% load i18n %}
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% trans "Sign up Form" %}</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% trans "Sign up Form" %}</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-</head>
-<link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+    </head>
+    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
-<body>
-           <a href="/{% trans "uk" %}/sign_up" class="language white-text">{% trans "Ukrainian" %}</a>
+    <body>
+        <a href="/{% trans "uk" %}/sign_up" class="language white-text">{% trans "Ukrainian" %}</a>
 
-<div class="login">
+        <div class="login">
 
-    <form method="post" action="home/">
+            <form method="post" action="home/">
                 {% csrf_token %}
-        <input type="text" name="u" placeholder="{% trans "Username" %}" required="required"/>
-        <input type="password" name="p" placeholder="{% trans "Password" %}" required="required"/>
-        <input type="text" name="first_name" placeholder="{% trans "First name" %}" required="required"/>
-        <input type="text" name="last_name" placeholder="{% trans "Last name" %}" required="required"/>
-        <button type="submit" class="btn btn-primary btn-block btn-large">{% trans "Create account" %}</button>
-    </form>
-</div>
+                <input type="text" name="u" placeholder="{% trans "Username" %}" required="required"/>
+                <input type="password" name="p" placeholder="{% trans "Password" %}" required="required"/>
+                <input type="text" name="first_name" placeholder="{% trans "First name" %}" required="required"/>
+                <input type="text" name="last_name" placeholder="{% trans "Last name" %}" required="required"/>
+                <button type="submit" class="btn btn-primary btn-block btn-large">{% trans "Create account" %}</button>
+            </form>
+        </div>
 
 
-</body>
+    </body>
 </html>
