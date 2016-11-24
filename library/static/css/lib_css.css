@@ -207,3 +207,21 @@ input:focus {
 .welcome-text{
     padding-left: 150px;
 }
+.logout{
+   position: absolute;
+    right: 1px;
+      top: 0px;
+}
+
+.language {
+    text-decoration: none;
+    position: absolute;
+    top: 92%;
+    left: 48%;
+
+}
+.back-to-menu{
+    position: absolute;
+    left: 43%;
+    top: 3%;
+}

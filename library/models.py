@@ -29,3 +29,8 @@ class Formular(models.Model): #бібліотечна облікова карт�
     # return_date= models.DateTimeField(default=datetime.now()+timedelta(days=30))
     def __str__(self):
         return str(self.user) + ' - ' + self.book.title
+
+
+class Record(models.Model):
+    username = models.ForeignKey(User)
+    time = models.DateTimeField()

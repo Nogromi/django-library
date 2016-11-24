@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-24 00:11+0200\n"
+"POT-Creation-Date: 2016-11-24 03:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,14 +19,36 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#: .\library\templates\library\book_details.html:8
+msgid "Book details"
+msgstr " Про книгу"
+
+#: .\library\templates\library\book_details.html:13
+#: .\library\templates\library\book_list.html:13
+#: .\library\templates\library\home.html:15
+#: .\library\templates\library\order_book.html:14
+msgid "Profile"
+msgstr "Профіль"
+
+#: .\library\templates\library\book_details.html:14
+#: .\library\templates\library\book_list.html:14
+#: .\library\templates\library\home.html:18
+#: .\library\templates\library\order_book.html:15
+#: .\library\templates\library\profile.html:17
+msgid "Logout"
+msgstr "Вийти"
+
+#: .\library\templates\library\book_details.html:22
+msgid "in reeading room"
+msgstr "в читальний зал"
+
+#: .\library\templates\library\book_details.html:23
+msgid "on ticket"
+msgstr "з собою"
+
 #: .\library\templates\library\book_list.html:8
 msgid "Resuls"
 msgstr "Результат"
-
-#: .\library\templates\library\book_list.html:13
-#: .\library\templates\library\home.html:15
-msgid "Profile"
-msgstr "Профіль"
 
 #: .\library\templates\library\book_list.html:19
 msgid "quantity"
@@ -44,22 +66,30 @@ msgstr "автор"
 msgid "Home"
 msgstr "Головна"
 
-#: .\library\templates\library\home.html:17
+#: .\library\templates\library\home.html:16
+#: .\library\templates\library\login_form.html:16
+#: .\library\templates\library\profile.html:16
+msgid "uk"
+msgstr "en"
+
+#: .\library\templates\library\home.html:16
+#: .\library\templates\library\login_form.html:16
+#: .\library\templates\library\profile.html:16
+msgid "Ukrainian"
+msgstr "English"
+
+#: .\library\templates\library\home.html:19
 msgid "en"
 msgstr "uk"
 
-#: .\library\templates\library\home.html:21
+#: .\library\templates\library\home.html:23
 msgid "Catalog"
 msgstr "Каталог"
 
-#: .\library\templates\library\home.html:35
-#: .\library\templates\library\home.html:36
+#: .\library\templates\library\home.html:37
+#: .\library\templates\library\home.html:38
 msgid "Search"
 msgstr "Пошук"
-
-#: .\library\templates\library\login_form.html:16
-msgid "Ukrainian"
-msgstr ""
 
 #: .\library\templates\library\login_form.html:21
 msgid "Login"
@@ -93,36 +123,44 @@ msgstr "Створити Акаунт"
 msgid "My profile"
 msgstr "Профіль"
 
-#: .\library\templates\library\profile.html:18
-msgid "Welcome"
-msgstr "Ласкаво просимо"
-
-#: .\library\templates\library\profile.html:18
-msgid "Thanks for logging in"
-msgstr "Бажаєте щось замовити?"
-
-#: .\library\templates\library\profile.html:20
+#: .\library\templates\library\profile.html:14
 msgid "Back to menu"
 msgstr "Повернутися в меню"
 
-#: .\library\templates\library\profile.html:23
+#: .\library\templates\library\profile.html:20
+msgid "Welcome"
+msgstr "Ласкаво просимо"
+
+#: .\library\templates\library\profile.html:20
+msgid "Thanks for logging in"
+msgstr " "
+
+#: .\library\templates\library\profile.html:24
 msgid "order list"
 msgstr "Список замовлень"
 
+#: .\library\templates\library\profile.html:33
+msgid "title"
+msgstr "назва"
+
 #: .\library\templates\library\profile.html:39
-#: .\library\templates\library\profile.html:43
+msgid "processing"
+msgstr "триває обробка"
+
+#: .\library\templates\library\profile.html:40
+#: .\library\templates\library\profile.html:44
 msgid "Clear"
 msgstr "Очистити"
 
-#: .\library\templates\library\profile.html:42
+#: .\library\templates\library\profile.html:43
 msgid "refused"
 msgstr "відмовлено"
 
-#: .\library\templates\library\profile.html:46
+#: .\library\templates\library\profile.html:47
 msgid "confirmed"
 msgstr "підтверджено"
 
-#: .\library\templates\library\profile.html:47
+#: .\library\templates\library\profile.html:48
 msgid "Return book"
 msgstr "Повернути книгу"
 
@@ -143,3 +181,6 @@ msgstr "Ваше прізвище"
 #: .\library\templates\library\sign_up_form.html:23
 msgid "Create account"
 msgstr "Створити акаунт"
+
+#~ msgid "Order"
+#~ msgstr "Замовити"

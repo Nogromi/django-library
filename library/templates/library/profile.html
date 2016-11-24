@@ -11,14 +11,14 @@
 
 </head>
 <body>
-
+            <a href="{% url 'home' %}" class="btn btn-primary btn-block" >{% trans "Back to menu" %}</a>
+            <a href="/{% trans "uk" %}/home" class="language white-text">{% trans "Ukrainian" %}</a>
+            <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
 
 {% if user.is_authenticated %}
-    <div class="welcome-text">
     <h1 class="white-text">{% trans "Welcome" %}, {{ user.get_username }}. {% trans "Thanks for logging in" %}</h1>
 {% endif %}
-<a href="{% url 'home' %}" class="btn btn-large btn-primary">{% trans "Back to menu" %}</a>
-</div>
+
 
 <h2 class="white-text">{% trans "order list" %}:</h2>
 
@@ -29,13 +29,13 @@
         <form method="post" action="return_book">
 
             <div class="white-text">
-                <li> title: {{ book.book }} </li>
+                <li> {% trans "title" %}: {{ book.book }} </li>
 
                 {{ book.order_date }} --
                 {{ book.deadline }}
                 {% if  book.state == None %}
 {#                    {{ book.state }}#}
-                    <p> wait
+                    <p>{% trans "processing" %}
                           <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
                     </p>
                 {% elif  not book.state %}

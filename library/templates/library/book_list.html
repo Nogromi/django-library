@@ -10,13 +10,13 @@
         <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 </head>
 <body>
-        <a href="http://127.0.0.1:8000/profile"class="btn btn-primary btn-block" >{% trans "Profile" %}</a>
-
+       <a href="{% url 'profile' %}"class="btn btn-primary btn-block" >  {% trans "Profile" %}</a>
+      <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
 {% for book in books %}
     <div>
     <h1><a href="{% url 'book details' pk=book.pk %}"  class="head" >{{ book.title }}</a></h1>
     <div class="properties">
-    <p>{% trans "quantity" %}: {{ book }}</p>
+    <p>{% trans "quantity" %}: {{ book.quantity }}</p>
     <p>{% trans "description" %}: {{ book.description }}</p>
     <p>{% trans "book author" %}: {{ book.book_author }}</p>
     <p>{{ book.text|linebreaksbr }}</p>

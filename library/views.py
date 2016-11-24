@@ -1,13 +1,15 @@
-from django.shortcuts import render
-from django.contrib.auth.models import User
 from  django.contrib.auth import *
-from .models import Book
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
+
 from  rest_framework import generics
-from .serializers import BookSerializer
+import logging
+
+from library import singleton
 from .models import Formular
+from .serializers import *
 
-
+logger = logging.getLogger(__name__)
 def login_form(request):
     return render(request, 'library/login_form.html', {})
 
@@ -20,15 +22,25 @@ def home(request):
 
         if user is not None:
             if user.is_active:
+
                 login(request, user)
+                singleton.SystemLog(user)
                 books = Book.objects.order_by('title')
+                logger.warning('user \''+ str(user)+'\''+' entered')
+
                 return render(request, 'library/home.html', {'books': books} )
         else:
-            return render(request, 'library/fuck.html')
+            logger.error('user \''+ str(user)+ '\''+ ' tried to enter ')
+            eror="Unable to log in. Please check that you have entered your login and password correctly."
+            return render(request, 'library/error_message.html', {'eror': eror})
     else:
         books = Book.objects.order_by('title')
         return render(request, 'library/home.html', {'books': books})
 
+def logout_view(request):
+    logout(request)
+    return render(request, 'library/login_form.html')
+    # Redirect to a success page.
 
 def sign_up_form(request):
     return render(request, 'library/sign_up_form.html', {})
@@ -78,7 +90,12 @@ def order_book(request, pk):
             f.save()
 
             return render(request, 'library/order_book.html', {'book': book})
-    return render(request, 'library/fuck.html')
+        else:
+            eror= "You already have this book"
+            return render(request, 'library/error_message.html', {'eror':eror})
+
+    eror="book have ended"
+    return render(request, 'library/error_message.html', {'eror':eror})
 
 
 def profile(request):
@@ -104,6 +121,8 @@ def return_book(request):
     return render(request, 'library/profile.html',{'book_reader':book_reader} )
 
 
+
+
 class BookList(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
@@ -112,3 +131,18 @@ class BookList(generics.ListCreateAPIView):
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+
+
+class FormularList(generics.ListCreateAPIView):
+    queryset = Formular.objects.all()
+    serializer_class = FormularSerializer
+
+
+class FormularDetail(generics.RetrieveUpdateDestroyAPIView
+                     ):
+    queryset = Formular.objects.all()
+    serializer_class = FormularSerializer
+
+
+

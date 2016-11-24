@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load i18n %}
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+     <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+</head>
 </head>
 <body>
+ <a href="{% url 'profile' %}"class="btn btn-primary btn-block" >  {% trans "Profile" %}</a>
+    <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
 success order!
-<a href="{% url 'profile'%}" class="btn btn-large">Profile</a>
+
 </body>
 </html>
