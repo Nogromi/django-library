@@ -1,0 +1,7 @@
+{% extends 'library/base.html' %}
+{% load i18n %}
+{% block content %}
+<a href="{% url 'formular_list' %}"class="btn btn-primary btn-block btn-formular-list">{% trans "Formular List" %} ({{ new_formulars }})</a>
+
+{% endblock %}
+

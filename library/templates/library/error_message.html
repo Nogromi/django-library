@@ -2,18 +2,19 @@
 {% load i18n %}
 {% load staticfiles %}
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% trans "Error" %}</title>
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "Error" %}</title>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
-    </head>
-    <body class="white-text">
-            <h1>
-                {{ eror }}
-               <input type=button value="Previous Page" class="btn btn-primary btn-large" onClick="javascript:history.go(-1);">
-            </h1>
-    </body>
+</head>
+<body class="white-text">
+<input type=button value="Previous Page" class="btn btn-primary btn-large" onClick="javascript:history.go(-1);">
+
+<h1>
+    {{ eror }}
+</h1>
+</body>
 </html>

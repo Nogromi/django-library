@@ -3,59 +3,119 @@
 {% load i18n %}
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% trans "My profile" %}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
-    </head>
-    <body>
-        <a href="{% url 'home' %}" class="btn btn-primary btn-block">{% trans "Back to menu" %}</a>
-        <a href="/{% trans "uk" %}/home" class="language white-text">{% trans "Ukrainian" %}</a>
-        <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "My profile" %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-        {% if user.is_authenticated %}
-            <h1 class="white-text">{% trans "Welcome" %}, {{ user.get_username }}. {% trans "Thanks for logging in" %}</h1>
-        {% endif %}
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #7dbaff;
+            color: white;
+        }
+
+        .mytext,
+        .mytext:link,
+        .mytext:active {
+
+            /*color: white;*/
+            text-decoration: none;
+            color: #206dc4;
+
+        {#    padding-left: 40px;#}
+        }</style>
+</head>
+<body>
+<a href="{% url 'home' %}" class="btn btn-primary btn-block">{% trans "Back to menu" %}</a>
+
+<a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
+
+{% if user.is_authenticated %}
+    <h1 class="white-text">{% trans "Welcome" %}, {{ user.get_username }}. {% trans "Thanks for logging in" %}</h1>
+{% endif %}
 
 
-        <h2 class="white-text">{% trans "order list" %}:</h2>
 
-        {% for book in book_reader %}
-          <ul>
-            {#    <h1><a href="{% url 'book details' pk=book.pk %}">{{ book.title }}</a></h1>#}
-              <p>
-                <form method="post" action="return_book">
+<h2>{% trans "order list" %}:</h2>
 
-                    <div class="white-text">
-                        <li> {% trans "title" %}: {{ book.book }} </li>
+<table>
+    <tr>
+        <th>Book</th>
+        <th>Status</th>
+        <th>Order date</th>
+        <th>Deadline</th>
+        <th>
 
-                        {{ book.order_date }} --
-                        {{ book.deadline }}
-                        {% if  book.state == None %}
-                            {#                    {{ book.state }}#}
-                            <p>{% trans "processing" %}
-                                <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
-                            </p>
-                        {% elif  not book.state %}
-                            <p> {% trans "refused" %}
-                                <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
-                            </p>
-                        {% elif   book.state %}
-                            <p> {% trans "confirmed" %}
-                                <button type="submit" class="btn btn-primary">{% trans "Return book" %}</button>
-                            </p>
-                        {% endif %}
 
-                    </div>
-                    {% csrf_token %}
-                    <input type="hidden" name="book_return" value={{ book.book }}/>
+        </th>
+    </tr>
 
-                 </form>
-            </p>
-          </ul>
+    {% for order in my_orders %}
+        <form method="post" action="return_book">
+            <tr>
+                <td><a href="{% url 'book detail' pk=order.book.pk %}">{{ order.book.title }}</a></td>
+                <td>{{ order.state }}</td>
+                <td>{{ order.order_date }}</td>
+                <td>{{ order.deadline }}</td>
+                <td>
+                    <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>
+            </tr>
+          <input type="hidden" name="book_return" value={{ order.book }} />
+        </form></td>
 
-        {% endfor %}
+    {% endfor %}
+</table>
+{##}
+{#    <ul>#}
+{#    <h1><a href="{% url 'book detail' pk=book.pk %}">{{ book.title }}</a></h1>#}
+{#        <p>#}
+{#        <form method="post" action="return_book">#}
+{##}
+{#            <div class="white-text">#}
+{#                <li> {% trans "title" %}: {{ book.book }} </li>#}
+{##}
+{#                {{ book.order_date }} --#}
+{#                {{ book.deadline }}#}
+{#                {% if  book.state == None %}#}
+{#                    {{ book.state }}#}
+{#                    <p>{% trans "processing" %}#}
+{#                          <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>#}
+{#                    </p>#}
+{#                {% elif  not book.state %}#}
+{#                    <p> {% trans "refused" %}#}
+{#                    <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>#}
+{#                    </p>#}
+{#                 {% elif   book.state %}#}
+{#                    <p> {% trans "confirmed" %}#}
+{#                     <button type="submit" class="btn btn-primary">{% trans "Return book" %}</button>#}
+{#                    </p>#}
+{#                {% endif %}#}
+{##}
+{#            </div>#}
+{#            {% csrf_token %}#}
+{#            <input type="hidden" name="book_return" value={{ book.book }} />#}
+{##}
+{#        </form>#}
+{#        </p>#}
+{##}
+{#    </ul>#}
 
-    </body>
+<a href="/{% trans "uk" %}/profile" class="language white-text">{% trans "Uk" %}</a>
+
+
+</body>
 </html>

@@ -9,21 +9,23 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index$', views.login_form, name='login_form'),
-    # url(r'^', views.login_form, name='login_form'),
     url(r'^sign_up$', views.sign_up_form, name='sign up form'),
     url(r'^home$', views.home, name='home'),
     url(r'^index/home$', views.home, name='home'),
-    # url(r'^home/$', views.logged_home, name='logged home'),
     url(r'^home/$', views.create_account),
     url(r'^search', views.search_book, name='search book'),
-    url(r'^book_details/(?P<pk>[0-9]+)/$', views.book_details, name='book details'),
-    url(r'^book_details/(?P<pk>[0-9]+)/order_book$', views.order_book, name='order book'),
+    url(r'^book/(?P<pk>[0-9]+)/$', views.book_detail, name='book detail'),
+    url(r'^book/(?P<pk>[0-9]+)/order_book$', views.order_book, name='order book'),
     url(r'^profile$', views.profile, name='profile'),
     url(r'^return_book$', views.return_book, name='return_book'),
-    url(r'^index/$', views.logout_view, name='logout')
-
-    # url(r'^profile$', views.logged_profile, name='logged profile'),
-    # url(r'^book/new/$', views.book_new, name='book_new'),
+    url(r'^index/$', views.logout_view, name='logout'),
+    url(r'^book/new/$', views.book_new, name='book_new'),
+    url(r'^book/edit/$', views.book_new, name='book_new'),
+    url(r'^book/(?P<pk>[0-9]+)/edit/$', views.book_edit, name='book_edit'),
+    url(r'^books/$', views.search_book, name='book_list'),
+    url(r'^formulars/$', views.formular_list, name='formular_list'),
+    url(r'^formular/(?P<pk>[0-9]+)/$', views.formular_detail, name='formular detail'),
+    url(r'^formular/(?P<pk>[0-9]+)/edit/$', views.formular_edit, name='formular_edit'),
 )
 apiurls=[
     url(r'^book/$', views.BookList.as_view()),

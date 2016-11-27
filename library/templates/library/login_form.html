@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
     <body>
-        <a href="/{% trans "uk" %}/index" class="language white-text">{% trans "Ukrainian" %}</a>
         <div class="login">
           <h1>{% trans "Login" %}</h1>
              <form method="post" action="home">
@@ -29,5 +28,8 @@
              class="btn btn-primary btn-block btn-large">{% trans "Create an account" %}
             </a>
         </div>
+
+            <a href="/{% trans "uk" %}/index" class="language-login">{% trans "Ukrainian" %}</a>
+
     </body>
 </html>
