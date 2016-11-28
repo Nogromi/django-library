@@ -3,6 +3,12 @@
 {% load i18n %}
 <html>
 <head>
+    <style>
+
+th {
+    background-color: #7dbaff;
+}
+    </style>
     <meta charset="UTF-8">
 
 
@@ -10,30 +16,13 @@
       <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-
-        th {
-            background-color: #6091ff;
-            color: white;
-        }
-    </style>
 </head>
-<body>
-<a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
-            <a href="{% url 'home' %}" class="btn btn-primary btn-block btn-profile">{%  trans "Home" %}</a>
+<body>      <a href="{% url 'logout' %}" class="btn btn-primary logout book-list-user-logout">{% trans "Logout" %}</a>
+            <a href="{% url 'book_list' %}" class="btn btn-primary btn-block btn-book-list-user">{%  trans "Book List" %}</a>
+            <a href="{% url 'home' %}" class="btn btn-primary btn-block btn-home-user">{%  trans "Home" %}</a>
+
+    <a href="{% url 'profile' %}" class="btn btn-primary btn-block btn-profile-user">  {% trans "Profile" %}</a>
 
 
 {#<a href="{% url 'formular_list' %}" class="btn btn-primary btn-block btn-book-list">{% trans "Formular List" %}</a>#}
@@ -41,19 +30,19 @@
 <h2>{% trans "Book list" %}:</h2>
 
 <table>
-
+    <div class="new-text">
     <tr>
-        <th>Book</th>
-        <th>Quantity</th>
-        <th>Author</th>
-        <th>Description</th>
+        <th>{% trans "Book" %}</th>
+        <th>{% trans "Quantity" %}</th>
+        <th>{% trans "Author" %}</th>
+        <th>{% trans "Description" %}</th>
         <th>
 
         </th>
     </tr>
 
     {% for book in books %}
-        <tr>
+        <tr >
         <td><a href="{% url 'book detail' pk=book.pk %}">{{ book.title }}</a></td>
         <td>{{ book.quantity }}</td>
         <td>{{ book.book_author }}</td>
@@ -61,10 +50,9 @@
         <td>
 
     {% endfor %}
+    </div>
 </table>
 
-
-<a href="/{% trans "uk" %}/home" class="btn btn-primary language white-text">{% trans "Uk" %}</a>
 
 </body>
 </html>

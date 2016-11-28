@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-  <h1>New book</h1>
-{#  class="post-form"#}
-    <form method="POST" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary btn-block btn-large">Save</button>
-    </form>
-</body>
+{% load staticfiles %}
+{% load i18n %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% trans "Sign up Form" %}</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    </head>
+    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+
+    <body>
+<input type=button value="{% trans "Previous Page" %}" class="btn btn-primary" onClick="javascript:history.go(-1);">
+
+        <div class="login edit_book">
+
+                <form method="POST" >
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block btn-large">{% trans "Save" %}</button>
+                </form>
+        </div>
+
+    </body>
 </html>

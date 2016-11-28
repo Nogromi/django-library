@@ -1,0 +1,32 @@
+{% extends 'library/base_list.html' %}
+{% load i18n %}
+{% block content %}
+
+<h2>{% trans "Book list" %}:</h2>
+
+<table class="new-text">
+
+    <tr>
+        <th>{% trans "Book" %}</th>
+        <th>{% trans "Quantity" %}</th>
+        <th>{% trans "Author" %}</th>
+        <th>{% trans "Description" %}</th>
+        <th>
+        </th>
+    </tr>
+
+    {% for book in books %}
+        <tr>
+        <td><a href="{% url 'book detail' pk=book.pk %} "class="mytext">{{ book.title }}</a>
+        </td>
+        <td>{{ book.quantity }}</td>
+        <td>{{ book.book_author }}</td>
+        <td>{{ book.description }}</td>
+        <td> <a class="btn btn-primary" href="{% url 'book_edit' pk=book.pk %}">{% trans "Edit" %}</a></td>
+
+    {% endfor %}
+</table>
+
+
+{% endblock %}
+

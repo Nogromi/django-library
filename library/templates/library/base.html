@@ -14,6 +14,7 @@
     <body>
             <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
             <a href="{% url 'book_list' %}" class="btn btn-primary btn-block btn-book-list">{%  trans "Book List" %}</a>
+            <a href="{% url 'home' %}" class="btn btn-primary btn-block btn-home">{%  trans "Home" %}</a>
 
 
 {##}        {% block content %}
@@ -29,6 +30,7 @@
             {% csrf_token %}
 
             <div class="search">
+                <h1>{% trans "Search book" %}</h1>
                 <input type="text" name="search_book" placeholder="{% trans "Search" %}" required="required" style="color: black"/>
                 <button type="submit" class="btn btn-primary btn-block btn-large"> {% trans "Search" %}</button>
             </div>

@@ -13,9 +13,8 @@
 
 </head>
 <body>
-        <a href="{% url 'book_list' %}" class="btn btn-primary btn-block btn-book-list">{%  trans "Book List" %}</a>
-        <a href="/{% trans "uk" %}/home" class="btn btn-primary btn-language">{% trans "Uk" %}</a>
-        <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
+        <a href="{% url 'formular_list' %}"class="btn btn-primary btn-block new-formular-list">{% trans "Formular List" %} ({{ new_formulars }})</a>
+            <a href="{% url 'book_new' %}"class="btn btn-primary btn-block new-book-new">{% trans "Add Book" %} </a>
 
 
 <h2>Formulars</h2>
@@ -33,9 +32,7 @@
     <td>{{ formular.state }}
         <a  href="{% url 'formular_edit' pk=formular.pk %}"class="btn " >
             <span class="glyphicon glyphicon-pencil"></span>
-        </a>
-
-    </td>
+        </a></td>
 
     <td>{{ formular.user_option }}</td>
     <td></td>

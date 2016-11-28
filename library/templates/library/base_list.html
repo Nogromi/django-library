@@ -1,67 +1,30 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{%  load staticfiles%}
 {% load i18n %}
 <html>
-<head>
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
 
 
-    <title> {% trans "List" %}</title>
-    {#            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">#}
-    {#            <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">#}
-
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-
-        th {
-            background-color: #6091ff;
-            color: white;
-        }
-    </style>
-</head>
-<body>
-<a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
-<a href="{% url 'book_list' %}" class="btn btn-primary btn-block btn-book-list">{% trans "Book List" %}</a>
-
-<h2>{% trans "Book list" %}:</h2>
-
-<table>
-
-    <tr>
-        <th>Book</th>
-        <th>Quantity</th>
-        <th>Author</th>
-        <th>Description</th>
-        <th>
-
-        </th>
-    </tr>
-
-    {% for book in books %}
-        <tr>
-        <td><a href="{% url 'book detail' pk=book.pk %}">{{ book.title }}</a></td>
-        <td>{{ book.quantity }}</td>
-        <td>{{ book.book_author }}</td>
-        <td>{{ book.description }}</td>
-        <td>
-
-    {% endfor %}
-</table>
+        <title> {% trans "Formulars" %}</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+            <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
 
-<a href="/{% trans "uk" %}/home" class="btn btn-primary language white-text">{% trans "Uk" %}</a>
+    </head>
+    <body>
+            <a href="{% url 'home' %}" class="btn btn-primary btn-block btn-home">{%  trans "Home" %}</a>
+            <a href="{% url 'formular_list' %}"class="btn btn-primary btn-block btn-formular-list">{% trans "Formular List" %} </a>
+            <a href="{% url 'book_new' %}"class="btn btn-primary btn-block btn-book-new">{% trans "Add Book" %} </a>
 
-</body>
+            <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
+            <a href="{% url 'book_list' %}" class="btn btn-primary btn-block new-book-list">{%  trans "Book List" %}</a>
+
+
+{##}        {% block content %}
+            {% endblock %}
+
+            <a href="/{% trans "uk" %}/formulars" class="btn btn-primary language white-text">{% trans "Uk" %}</a>
+
+    </body>
 </html>

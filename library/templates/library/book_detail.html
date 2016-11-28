@@ -7,28 +7,30 @@
         <meta charset="UTF-8">
         <title>{% trans "Book detail" %}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
     </head>
     <body>
-        <a href="{% url 'profile' %}" class="btn btn-primary btn-block">  {% trans "Profile" %}</a>
-        <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
+            <a href="{% url 'logout' %}" class="btn btn-primary logout book-detail-user-logout">{% trans "Logout" %}</a>
+            <a href="{% url 'book_list' %}" class="btn btn-primary btn-block btn-book-list-user">{%  trans "Book List" %}</a>
+            <a href="{% url 'home' %}" class="btn btn-primary btn-block btn-home-user">{%  trans "Home" %}</a>
+        <a href="{% url 'profile' %}" class="btn btn-primary btn-block btn-profile-user">  {% trans "Profile" %}</a>
+
+
+
+<b>2 </b>
         <div class="mytext">
-            {% if user.username == "LibraryMan" %}
-                <a class="btn btn-default" href="{% url 'book_edit' pk=book.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            {% endif %}
+
             <h1>{{ book.title }}</h1>
             <h1>{{ book.description }}</h1>
             <h1>{{ book.book_author }}</h1>
-            <h1>quantity {{ book.quantity }}</h1>
+            <h1>{% trans "quantity" %} {{ book.quantity }}</h1>
 
 {#            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>#}
           <form method="post" action="order_book" class="mytext">
             <select name="option">
-                <option value="reading_room">{% trans "in reeading room" %}</option>
+                <option value="reading_room">{% trans "in reading room" %}</option>
                 <option value="on_ticket">{% trans "on ticket" %}</option>
             </select>
             <input type="submit" class="btn btn-primary btn-block btn-large btn-order" value=Order />

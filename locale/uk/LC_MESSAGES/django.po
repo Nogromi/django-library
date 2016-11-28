@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 21:29+0200\n"
+"POT-Creation-Date: 2016-11-28 23:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,90 +19,207 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: .\library\templates\library\base.html:9
-msgid "Home"
-msgstr "Головна"
+#: .\library\templates\library\admin_book_list.html:9
+#: .\library\templates\library\book_list.html:9
+msgid "List"
+msgstr "Список"
 
+#: .\library\templates\library\admin_book_list.html:37
 #: .\library\templates\library\base.html:15
-#: .\library\templates\library\book_detail.html:14
-#: .\library\templates\library\book_list.html:16
+#: .\library\templates\library\base_library_man.html:17
+#: .\library\templates\library\base_list.html:20
+#: .\library\templates\library\book_detail.html:15
+#: .\library\templates\library\book_list.html:34
+#: .\library\templates\library\home.html:15
+#: .\library\templates\library\libraryman_book_detail.html:19
 #: .\library\templates\library\order_book.html:14
-#: .\library\templates\library\profile.html:16
+#: .\library\templates\library\profile.html:43
 msgid "Logout"
 msgstr "Вийти"
 
-#: .\library\templates\library\base.html:16
-#, fuzzy
-#| msgid "Book details"
-msgid "Book List"
+#: .\library\templates\library\admin_book_list.html:38
+#: .\library\templates\library\base.html:9
+#: .\library\templates\library\base.html:17
+#: .\library\templates\library\base_list.html:9
+#: .\library\templates\library\base_list.html:16
+#: .\library\templates\library\book_detail.html:17
+#: .\library\templates\library\book_list.html:36
+#: .\library\templates\library\home.html:9
+#: .\library\templates\library\home.html:17
+#: .\library\templates\library\profile.html:44
+msgid "Home"
+msgstr "Головна"
+
+#: .\library\templates\library\admin_book_list.html:40
+#: .\library\templates\library\base_list.html:17
+#: .\library\templates\library\formular_list.html:16
+#: .\library\templates\library\libraryman_home.html:4
+msgid "Formular List"
+msgstr "Формуляри"
+
+#: .\library\templates\library\admin_book_list.html:44
+#: .\library\templates\library\book_list.html:43
+#: .\library\templates\library\libraryman_book_list.html:5
+#: .\library\templates\library\libraryman_formular_list.html:5
+msgid "Book list"
 msgstr "Список книг"
 
-#: .\library\templates\library\base.html:28
-msgid "en"
-msgstr "uk"
-
-#: .\library\templates\library\base.html:32
-#: .\library\templates\library\base.html:33
-msgid "Search"
-msgstr "Пошук"
-
-#: .\library\templates\library\base.html:37
-#: .\library\templates\library\book_list.html:28
+#: .\library\templates\library\admin_book_list.html:70
+#: .\library\templates\library\base.html:39
+#: .\library\templates\library\base_library_man.html:27
+#: .\library\templates\library\base_list.html:27
+#: .\library\templates\library\home.html:38
+#: .\library\templates\library\libraryman_book_detail.html:18
 #: .\library\templates\library\login_form.html:32
-#: .\library\templates\library\profile.html:61
+#: .\library\templates\library\profile.html:116
 #: .\library\templates\library\sign_up_form.html:15
 #: .\library\templates\library\sign_up_form.html:29
 msgid "uk"
 msgstr "en"
 
-#: .\library\templates\library\base.html:37
+#: .\library\templates\library\admin_book_list.html:70
+#: .\library\templates\library\base.html:39
+#: .\library\templates\library\base_library_man.html:27
+#: .\library\templates\library\base_list.html:27
+#: .\library\templates\library\home.html:38
+#: .\library\templates\library\libraryman_book_detail.html:18
+#: .\library\templates\library\profile.html:116
 msgid "Uk"
 msgstr "En"
 
-#: .\library\templates\library\book_detail.html:8
-#, fuzzy
-#| msgid "Book details"
-msgid "Book detail"
-msgstr " Про книгу"
+#: .\library\templates\library\base.html:16
+#: .\library\templates\library\base_library_man.html:16
+#: .\library\templates\library\base_list.html:21
+#: .\library\templates\library\book_detail.html:16
+#: .\library\templates\library\book_list.html:35
+#: .\library\templates\library\home.html:16
+msgid "Book List"
+msgstr "Список Книг"
 
-#: .\library\templates\library\book_detail.html:13
-#: .\library\templates\library\book_list.html:15
-#: .\library\templates\library\home.html:4
+#: .\library\templates\library\base.html:29
+#: .\library\templates\library\home.html:28
+msgid "en"
+msgstr "uk"
+
+#: .\library\templates\library\base.html:33
+#: .\library\templates\library\home.html:32
+msgid "Search book"
+msgstr "Пошук книги"
+
+#: .\library\templates\library\base.html:34
+#: .\library\templates\library\base.html:35
+#: .\library\templates\library\home.html:33
+#: .\library\templates\library\home.html:34
+msgid "Search"
+msgstr "Пошук"
+
+#: .\library\templates\library\base_list.html:18
+#: .\library\templates\library\formular_list.html:17
+#: .\library\templates\library\libraryman_home.html:5
+msgid "Add Book"
+msgstr "Додати книгу"
+
+#: .\library\templates\library\book_detail.html:8
+#: .\library\templates\library\libraryman_book_detail.html:8
+msgid "Book detail"
+msgstr "Про книгу"
+
+#: .\library\templates\library\book_detail.html:18
+#: .\library\templates\library\book_list.html:38
+#: .\library\templates\library\home.html:19
 #: .\library\templates\library\order_book.html:13
 msgid "Profile"
 msgstr "Профіль"
 
-#: .\library\templates\library\book_detail.html:25
-msgid "in reeading room"
+#: .\library\templates\library\book_detail.html:28
+msgid "quantity"
+msgstr "кількість"
+
+#: .\library\templates\library\book_detail.html:33
+msgid "in reading room"
 msgstr "в читальний зал"
 
-#: .\library\templates\library\book_detail.html:26
+#: .\library\templates\library\book_detail.html:34
 msgid "on ticket"
 msgstr "з собою"
 
-#: .\library\templates\library\book_list.html:8
-msgid "Resuls"
-msgstr "Результат"
+#: .\library\templates\library\book_edit.html:7
+#: .\library\templates\library\formular_edit.html:7
+#: .\library\templates\library\sign_up_form.html:7
+msgid "Sign up Form"
+msgstr "Реєстрація"
 
-#: .\library\templates\library\book_list.html:23
-msgid "quantity"
-msgstr "доступно"
+#: .\library\templates\library\book_edit.html:15
+#: .\library\templates\library\formular_edit.html:15
+msgid "Previous Page"
+msgstr "Назад"
 
-#: .\library\templates\library\book_list.html:28
-#: .\library\templates\library\login_form.html:32
-#: .\library\templates\library\profile.html:61
-#: .\library\templates\library\sign_up_form.html:15
-#: .\library\templates\library\sign_up_form.html:29
-msgid "Ukrainian"
-msgstr "English"
+#: .\library\templates\library\book_edit.html:22
+#: .\library\templates\library\formular_edit.html:22
+msgid "Save"
+msgstr "Зберегти"
+
+#: .\library\templates\library\book_list.html:48
+#: .\library\templates\library\libraryman_book_list.html:10
+msgid "Book"
+msgstr "Книга"
+
+#: .\library\templates\library\book_list.html:49
+#: .\library\templates\library\libraryman_book_list.html:11
+msgid "Quantity"
+msgstr "Кількість"
+
+#: .\library\templates\library\book_list.html:50
+#: .\library\templates\library\libraryman_book_list.html:12
+msgid "Author"
+msgstr "Автор"
+
+#: .\library\templates\library\book_list.html:51
+#: .\library\templates\library\libraryman_book_list.html:13
+msgid "Description"
+msgstr "Про книгу"
 
 #: .\library\templates\library\error_message.html:7
 msgid "Error"
-msgstr "Щось не так"
+msgstr "Помилка"
 
-#: .\library\templates\library\libraryman_home.html:4
-msgid "Formular List"
-msgstr "Усі формуляри"
+#: .\library\templates\library\libraryman_book_detail.html:22
+msgid "Title: "
+msgstr "Назва: "
+
+#: .\library\templates\library\libraryman_book_detail.html:23
+msgid "Description: "
+msgstr "По книгу: "
+
+#: .\library\templates\library\libraryman_book_detail.html:24
+msgid "Author: "
+msgstr "Автор: "
+
+#: .\library\templates\library\libraryman_book_detail.html:25
+msgid "Quantity: "
+msgstr "Кількість: "
+
+#: .\library\templates\library\libraryman_book_detail.html:26
+#: .\library\templates\library\libraryman_book_list.html:25
+#: .\library\templates\library\libraryman_formular_list.html:20
+msgid "Edit"
+msgstr "Редагувати"
+
+#: .\library\templates\library\libraryman_formular_list.html:9
+msgid "Name"
+msgstr "Назва"
+
+#: .\library\templates\library\libraryman_formular_list.html:10
+msgid "Status"
+msgstr "Статус"
+
+#: .\library\templates\library\libraryman_formular_list.html:11
+msgid "user option"
+msgstr "в зал/з собою"
+
+#: .\library\templates\library\libraryman_formular_list.html:29
+msgid "Total"
+msgstr "Загалом"
 
 #: .\library\templates\library\login_form.html:16
 msgid "Login"
@@ -124,64 +241,41 @@ msgstr "Увійти"
 
 #: .\library\templates\library\login_form.html:25
 msgid "or Sign up"
-msgstr "чи зареєструватися"
+msgstr "чи Створити  Аккаунт"
 
 #: .\library\templates\library\login_form.html:28
 msgid "Create an account"
-msgstr "Створити Акаунт"
+msgstr "Створити аккаунт"
+
+#: .\library\templates\library\login_form.html:32
+#: .\library\templates\library\sign_up_form.html:15
+#: .\library\templates\library\sign_up_form.html:29
+msgid "Ukrainian"
+msgstr "English"
+
+#: .\library\templates\library\order_book.html:15
+msgid "successful order!"
+msgstr "Книгу успішно замовлено"
 
 #: .\library\templates\library\profile.html:8
-#, fuzzy
-#| msgid "Profile"
 msgid "My profile"
 msgstr "Профіль"
 
-#: .\library\templates\library\profile.html:14
-msgid "Back to menu"
-msgstr "Повернутися в меню"
-
-#: .\library\templates\library\profile.html:19
+#: .\library\templates\library\profile.html:47
 msgid "Welcome"
-msgstr "Ласкаво просимо"
+msgstr "Вітаю"
 
-#: .\library\templates\library\profile.html:19
+#: .\library\templates\library\profile.html:47
 msgid "Thanks for logging in"
 msgstr " "
 
-#: .\library\templates\library\profile.html:23
+#: .\library\templates\library\profile.html:52
 msgid "order list"
-msgstr "Список замовлень"
+msgstr "список замовлень"
 
-#: .\library\templates\library\profile.html:32
-msgid "title"
-msgstr "назва"
-
-#: .\library\templates\library\profile.html:38
-msgid "processing"
-msgstr "триває обробка"
-
-#: .\library\templates\library\profile.html:39
-#: .\library\templates\library\profile.html:43
+#: .\library\templates\library\profile.html:74
 msgid "Clear"
 msgstr "Очистити"
-
-#: .\library\templates\library\profile.html:42
-msgid "refused"
-msgstr "відмовлено"
-
-#: .\library\templates\library\profile.html:46
-msgid "confirmed"
-msgstr "підтверджено"
-
-#: .\library\templates\library\profile.html:47
-msgid "Return book"
-msgstr "Повернути книгу"
-
-#: .\library\templates\library\sign_up_form.html:7
-#, fuzzy
-#| msgid "or Sign up"
-msgid "Sign up Form"
-msgstr "Реєстрація"
 
 #: .\library\templates\library\sign_up_form.html:23
 msgid "First name"
@@ -194,31 +288,3 @@ msgstr "Ваше прізвище"
 #: .\library\templates\library\sign_up_form.html:25
 msgid "Create account"
 msgstr "Створити акаунт"
-
-#, fuzzy
-#~| msgid "title"
-#~ msgid "Title"
-#~ msgstr "назва"
-
-#, fuzzy
-#~| msgid "book author"
-#~ msgid "author"
-#~ msgstr "автор"
-
-#~ msgid "description"
-#~ msgstr "про книгу"
-
-#~ msgid "Save"
-#~ msgstr "Зберегти"
-
-#~ msgid "book author"
-#~ msgstr "автор"
-
-#~ msgid "Catalog"
-#~ msgstr "Каталог"
-
-#~ msgid "Add book"
-#~ msgstr "Додати"
-
-#~ msgid "Order"
-#~ msgstr "Замовити"

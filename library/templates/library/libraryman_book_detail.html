@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "Book detail" %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
+</head>
+<body>
+<input type=button value="Previous Page" class="btn btn-primary btn-back" onClick="javascript:history.go(-1);">
+<a href="/{% trans "uk" %}/home" class=" btn-language">{% trans "Uk" %}</a>
+<a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
+<div class="mytext">
+
+    <h1>{% trans "Title: " %}{{ book.title }}</h1>
+    <h1>{% trans "Description: " %}{{ book.description }}</h1>
+    <h1>{% trans "Author: " %}{{ book.book_author }}</h1>
+    <h1>{% trans "Quantity: " %} {{ book.quantity }}</h1>
+    <a href="{% url 'book_edit' pk=book.pk %}" class="btn btn-primary btn-edit ">{% trans "Edit" %}</a>
+
+</div>
+
+
+</body>
+</html>
