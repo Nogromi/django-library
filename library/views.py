@@ -1,4 +1,5 @@
 from  django.contrib.auth import *
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
@@ -11,6 +12,10 @@ from .models import Formular
 from .serializers import *
 
 logger = logging.getLogger(__name__)  # logger
+
+
+def index(request):
+    return render(request, 'library/login_form.html', {})
 
 
 def login_form(request):
@@ -31,7 +36,7 @@ def home(request):  # HOME
                 singleton.SystemLog(user)
                 logger.warning('user \'' + user.username + '\'' + ' entered')
 
-                if request.user.username == "LibraryMan":
+                if request.user.groups.all()[0].name == "library_man":
                     formulars = Formular.objects.filter(state=None)
 
                     new_formulars = formulars.count()
@@ -45,7 +50,7 @@ def home(request):  # HOME
             return render(request, 'library/error_message.html', {'eror': eror})
     else:
 
-        if request.user.username == "LibraryMan":
+        if request.user.groups.all()[0].name == "library_man":
             formulars = Formular.objects.filter(state=None)
 
             new_formulars = formulars.count()
@@ -72,9 +77,9 @@ def create_account(request):
     last_name = request.POST['last_name']
     check_user = User.objects.filter(username=username)
     if len(check_user) > 0:
-        eror = 'this login already taken'
+        eror = 'sorry, this login already taken'
         return render(request, 'library/error_message.html', {'eror': eror})
-    g= Group.objects.filter(name='user')
+    g = Group.objects.filter(name='user')
 
     user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
     user.groups.add(g[0])
@@ -85,58 +90,77 @@ def create_account(request):
 
 
 def search_book(request):
-    if request.method == "POST":
-        book = request.POST['search_book']
-        books = Book.objects.filter(title__contains=book)
-        return render(request, 'library/book_list.html', {'books': books})
-    else:
-        books = Book.objects.all()
+    if request.user.is_authenticated():
+        if request.method == "POST":
+            book = request.POST['search_book']
+            books = Book.objects.filter(title__contains=book)
+            if request.user.groups.all()[0].name == "library_man":
+                formulars = Formular.objects.filter(state=None)
 
-        if request.user.username=="LibraryMan":
-            formulars = Formular.objects.filter(state=None)
+                new_formulars = formulars.count()
 
-            new_formulars = formulars.count()
-            return render(request, 'library/admin_book_list.html', {'books': books, 'new_formulars':new_formulars})
-        else:
+                return render(request, 'library/libraryman_book_list.html',
+                              {'books': books, 'new_formulars': new_formulars})
+
             return render(request, 'library/book_list.html', {'books': books})
+        else:
+            books = Book.objects.all()
+
+            if request.user.groups.all()[0].name == "library_man":
+                formulars = Formular.objects.filter(state=None)
+
+                new_formulars = formulars.count()
+                return render(request, 'library/libraryman_book_list.html',
+                              {'books': books, 'new_formulars': new_formulars})
+            else:
+                return render(request, 'library/book_list.html', {'books': books})
+    else:
+        return redirect(index)
 
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
+    if request.user.groups == 'library_man':
+        return render(request, 'library/libraryman_book_detail.html', {'book': book})
 
     return render(request, 'library/book_detail.html', {'book': book})
 
 
 def order_book(request, pk):  # order book
-    book = get_object_or_404(Book, pk=pk)
-    user = request.user
-    if book.quantity > 0:
-        get_book = Book.objects.filter(title=book)[0]  # без [0]  це QuerySet а так це обэкт Книга
+    if request.user.is_authenticated():
+        book = get_object_or_404(Book, pk=pk)
+        user = request.user
+        if book.quantity > 0:
+            get_book = Book.objects.filter(title=book)[0]  # без [0]  це QuerySet а так це обэкт Книга
 
-        if not Formular.objects.filter(user=user, book=get_book):
-            # get_book= Book.objects.update(quantity=book.quantity-1)
-            get_book.quantity -= 1
-            get_book.save()
-            option = request.POST['option']
+            if not Formular.objects.filter(user=user, book=get_book):
+                # get_book= Book.objects.update(quantity=book.quantity-1)
+                get_book.quantity -= 1
+                get_book.save()
+                option = request.POST['option']
 
-            f = Formular(book=book, user=user, user_option=option)
-            f.save()
+                f = Formular(book=book, user=user, user_option=option)
+                f.save()
 
-            return render(request, 'library/order_book.html', {'book': book})
-        else:
-            eror = "You already have this book"
-            return render(request, 'library/error_message.html', {'eror': eror})
+                return render(request, 'library/order_book.html', {'book': book})
+            else:
+                eror = "You already have this book"
+                return render(request, 'library/error_message.html', {'eror': eror})
 
-    eror = "book have ended"
-    return render(request, 'library/error_message.html', {'eror': eror})
+        eror = "book have ended"
+        return render(request, 'library/error_message.html', {'eror': eror})
+    else:
+        return redirect(index)
 
 
+@login_required(login_url='/index')
 def profile(request):
     # картка, що заповнюється на кожного читача бібліотеки, куди записуються відомості про видані йому книжки
     my_orders = Formular.objects.filter(user=request.user)
     return render(request, 'library/profile.html', {'my_orders': my_orders})
 
 
+@login_required(login_url='/index')
 def return_book(request):
     book = request.POST['book_return']
     get_book = Book.objects.filter(title=book)[0]
@@ -152,32 +176,7 @@ def return_book(request):
     return render(request, 'library/profile.html', {'my_orders': my_orders})
 
 
-def add_book(request):
-    return render(request, 'library/add_book.html')
-
-
-def save_new_book(request):
-    title = request.POST['title']
-    author = request.POST['author']
-    description = request.POST['description']
-    quantity = request.POST['quantity']
-    num_quantity = int(quantity)
-    books = Book.objects.order_by('title')
-    book_exist = False
-    for book in books:
-        if book.title == title:
-            book_exist = True
-
-    if not book_exist:
-        new_book = Book.objects.create(title=title, book_author=author, description=description, quantity=quantity)
-        new_book.save()
-    else:
-        eror = 'That book already exist. You can use edit button'
-        return render(request, 'library/error_message.html', {'eror': eror})
-
-    return render(request, 'library/libraryman_home.html', {'books': books})
-
-
+@login_required(login_url='/index')
 def book_new(request):
     if request.method == "POST":
         form = BookForm(request.POST)
@@ -191,54 +190,75 @@ def book_new(request):
     return render(request, 'library/book_edit.html', {'form': form})
 
 
+@login_required(login_url='/index')
 def book_edit(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-    if request.method == "POST":
-        form = BookForm(request.POST, instance=book)
-        if form.is_valid():
-            book.save()
-            return redirect(book_detail, pk=book.pk)
+    if request.user.groups == 'library_man':
+
+        book = get_object_or_404(Book, pk=pk)
+        if request.method == "POST":
+            form = BookForm(request.POST, instance=book)
+            if form.is_valid():
+                book.save()
+                return redirect(book_detail, pk=book.pk)
+        else:
+            form = BookForm(instance=book)
+        return render(request, 'library/book_edit.html', {'form': form})
     else:
-        form = BookForm(instance=book)
-    return render(request, 'library/book_edit.html', {'form': form})
+        return redirect(profile)
 
 
+@login_required(login_url='/index')
 def formular_list(request):
     formulars = Formular.objects.order_by('state')
-    if formulars:
+    if request.user.groups.all()[0].name == "library_man":
         n = formulars.count()
-    return render(request, 'library/formular_list.html', {'formulars': formulars, 'n': n})
-
-
-def formular_detail(request, pk):
-    formular = get_object_or_404(Formular, pk=pk)
-
-    return render(request, 'library/formular_detail.html', {'formular': formular})
-
-
-def formular_edit(request, pk):
-    formular = get_object_or_404(Formular, pk=pk)
-    if request.method == "POST":
-        form = FormularForm(request.POST, instance=formular)
-        if form.is_valid():
-            formular.save()
-            return redirect(book_detail, pk=formular.pk)
+        return render(request, 'library/libraryman_formular_list.html', {'formulars': formulars, 'n': n})
     else:
-        form = FormularForm(instance=formular)
-    return render(request, 'library/formular_edit.html', {'form': form})
+        return redirect(profile)
+
+
+@login_required(login_url='/index')
+def formular_detail(request, pk):
+    if request.user.groups == 'library_man':
+
+        formular = get_object_or_404(Formular, pk=pk)
+
+        return render(request, 'library/formular_detail.html', {'formular': formular})
+    else:
+        return redirect(profile)
+
+
+@login_required(login_url='/index')
+def formular_edit(request, pk):
+    if request.user.groups == 'library_man':
+
+        formular = get_object_or_404(Formular, pk=pk)
+        if request.method == "POST":
+            form = FormularForm(request.POST, instance=formular)
+            if form.is_valid():
+                formular.save()
+                return redirect(formular_list)
+        else:
+            form = FormularForm(instance=formular)
+        return render(request, 'library/formular_edit.html', {'form': form})
+    else:
+        return redirect(profile)
 
 
 class BookList(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+
 class FormularList(generics.ListCreateAPIView):
     queryset = Formular.objects.all()
     serializer_class = FormularSerializer
+
 
 class FormularDetail(generics.RetrieveUpdateDestroyAPIView
                      ):
