@@ -37,7 +37,7 @@ def home(request):  # HOME
             if user.is_active:
                 login(request, user)
                 singleton.SystemLog(user)
-                logger.warning('user \'' + user.username + '\'' + ' entered')
+                logger.warning('user \'' + user.username + '\'' + ' entered ' + str(datetime.datetime.now()))
 
                 if request.user.groups.all()[0].name == "library_man":
                     formulars = Formular.objects.filter(state=None)
@@ -48,9 +48,10 @@ def home(request):  # HOME
 
                 return render(request, 'library/home.html', {'books': books})
         else:
-            logger.error('user \'' + str(user) + '\'' + ' tried to enter ')
-            eror = "Unable to log in. Please check that you have entered your login and password correctly."
-            return render(request, 'library/error_message.html', {'eror': eror})
+            logger.warning('user ' + request.POST['u'] + ' entered wrong password '+str(datetime.datetime.now()))
+            # logger.error('user \'' + str(user) + '\'' + ' tried to enter ')
+            error = "Unable to log in. Please check that you have entered your login and password correctly."
+            return render(request, 'library/error_message.html', {'eror': error})
     else:
         r = Record(username=request.user, time=datetime.datetime.now())
         r.save()
@@ -67,6 +68,7 @@ def home(request):  # HOME
 
 def logout_view(request):
     logout(request)
+    logger.warning('user ' + str(request.user.username) + ' logged out'+ str(datetime.datetime.now()))
     return render(request, 'library/login_form.html')
     # Redirect to a success page.
 
@@ -91,9 +93,12 @@ def create_account(request):
 
     user.save()
     # books = Book.objects.order_by('title')
+
+    logger.warning('new user registered with name' + username+ ' '+str(datetime.datetime.now()))
     return redirect(login_form)
 
 
+@login_required(login_url='/index')
 def search_book(request):
     if request.user.is_authenticated():
         if request.method == "POST":
@@ -123,6 +128,7 @@ def search_book(request):
         return redirect(index)
 
 
+@login_required(login_url='/index')
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.user.groups == 'library_man':
@@ -131,6 +137,7 @@ def book_detail(request, pk):
     return render(request, 'library/book_detail.html', {'book': book})
 
 
+@login_required(login_url='/index')
 def order_book(request, pk):  # order book
     if request.user.is_authenticated():
         book = get_object_or_404(Book, pk=pk)
