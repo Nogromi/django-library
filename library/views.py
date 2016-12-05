@@ -1,3 +1,5 @@
+import datetime
+
 from  django.contrib.auth import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
@@ -8,7 +10,7 @@ import logging
 
 from library import singleton
 from library.forms import BookForm, FormularForm
-from .models import Formular
+from .models import Formular, Record
 from .serializers import *
 
 logger = logging.getLogger(__name__)  # logger
@@ -28,6 +30,7 @@ def home(request):  # HOME
     if request.method == "POST":
         username = request.POST['u']
         password = request.POST['p']
+        print(request.session)
         user = authenticate(username=username, password=password)
 
         if user is not None:
@@ -49,6 +52,8 @@ def home(request):  # HOME
             eror = "Unable to log in. Please check that you have entered your login and password correctly."
             return render(request, 'library/error_message.html', {'eror': eror})
     else:
+        r = Record(username=request.user, time=datetime.datetime.now())
+        r.save()
 
         if request.user.groups.all()[0].name == "library_man":
             formulars = Formular.objects.filter(state=None)
@@ -192,7 +197,7 @@ def book_new(request):
 
 @login_required(login_url='/index')
 def book_edit(request, pk):
-    if request.user.groups == 'library_man':
+    if request.user.groups.all()[0].name == "library_man":
 
         book = get_object_or_404(Book, pk=pk)
         if request.method == "POST":
@@ -230,7 +235,7 @@ def formular_detail(request, pk):
 
 @login_required(login_url='/index')
 def formular_edit(request, pk):
-    if request.user.groups == 'library_man':
+    if request.user.groups.all()[0].name == "library_man":
 
         formular = get_object_or_404(Formular, pk=pk)
         if request.method == "POST":

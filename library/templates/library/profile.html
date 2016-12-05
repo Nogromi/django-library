@@ -50,17 +50,13 @@
 
 
 <h2>{% trans "order list" %}:</h2>
-
 <table>
     <tr>
         <th>Book</th>
         <th>Status</th>
         <th>Order date</th>
         <th>Deadline</th>
-        <th>
-
-
-        </th>
+        <th></th>
     </tr>
 
     {% for order in my_orders %}
@@ -78,40 +74,7 @@
 
     {% endfor %}
 </table>
-{##}
-{#    <ul>#}
-{#    <h1><a href="{% url 'book detail' pk=book.pk %}">{{ book.title }}</a></h1>#}
-{#        <p>#}
-{#        <form method="post" action="return_book">#}
-{##}
-{#            <div class="white-text">#}
-{#                <li> {% trans "title" %}: {{ book.book }} </li>#}
-{##}
-{#                {{ book.order_date }} --#}
-{#                {{ book.deadline }}#}
-{#                {% if  book.state == None %}#}
-{#                    {{ book.state }}#}
-{#                    <p>{% trans "processing" %}#}
-{#                          <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>#}
-{#                    </p>#}
-{#                {% elif  not book.state %}#}
-{#                    <p> {% trans "refused" %}#}
-{#                    <button type="submit" class="btn btn-primary">{% trans "Clear" %}</button>#}
-{#                    </p>#}
-{#                 {% elif   book.state %}#}
-{#                    <p> {% trans "confirmed" %}#}
-{#                     <button type="submit" class="btn btn-primary">{% trans "Return book" %}</button>#}
-{#                    </p>#}
-{#                {% endif %}#}
-{##}
-{#            </div>#}
-{#            {% csrf_token %}#}
-{#            <input type="hidden" name="book_return" value={{ book.book }} />#}
-{##}
-{#        </form>#}
-{#        </p>#}
-{##}
-{#    </ul>#}
+
 
 <a href="/{% trans "uk" %}/profile" class="btn btn-primary language white-text">{% trans "Uk" %}</a>
 

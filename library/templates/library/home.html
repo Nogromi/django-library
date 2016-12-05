@@ -4,8 +4,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-
-
         <title> {% trans "Home" %}</title>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
             <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
@@ -15,19 +13,10 @@
             <a href="{% url 'logout' %}" class="btn btn-primary logout">{% trans "Logout" %}</a>
             <a href="{% url 'book_list' %}" class="btn btn-primary btn-block home-booklist-user">{%  trans "Book List" %}</a>
             <a href="{% url 'home' %}" class="btn btn-primary btn-block btn-home-user">{%  trans "Home" %}</a>
-
-    <a href="{% url 'profile' %}" class="btn btn-primary btn-block btn-profile-user">  {% trans "Profile" %}</a>
-
-{#            <div class="catalog">#}
-{#                <h1>{% trans "Catalog" %}</h1>#}
-{#                {% for book in books %}#}
-{#                    <h2> <a  class="mytext" href="{% url 'book detail' pk=book.pk %}">{{ book.title }}</a></h2>#}
-{#                {% endfor %}#}
-{#            </div>#}
+            <a href="{% url 'profile' %}" class="btn btn-primary btn-block btn-profile-user">  {% trans "Profile" %}</a>
 
         <form method="post" action="http://127.0.0.1:8000/{% trans "en" %}/search">
             {% csrf_token %}
-
             <div class="search">
                 <h1>{% trans "Search book" %}</h1>
                 <input type="text" name="search_book" placeholder="{% trans "Search" %}" required="required" style="color: black"/>

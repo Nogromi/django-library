@@ -12,10 +12,8 @@
     <link rel="stylesheet" href="{% static 'css/lib_css.css' %}">
 
     <body>
-        <a href="/{% trans "uk" %}/sign_up" class="language white-text">{% trans "Ukrainian" %}</a>
-
         <div class="login">
-
+            <h1>{% trans "Registration" %}</h1>
             <form method="post" action="home/">
                 {% csrf_token %}
                 <input type="text" name="u" placeholder="{% trans "Username" %}" required="required"/>
@@ -25,7 +23,6 @@
                 <button type="submit" class="btn btn-primary btn-block btn-large">{% trans "Create account" %}</button>
             </form>
         </div>
-
         <a href="/{% trans "uk" %}/sign_up" class="language-login">{% trans "Ukrainian" %}</a>
     </body>
 </html>
